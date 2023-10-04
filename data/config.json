@@ -1,0 +1,10 @@
+{
+  name: WatsonXOrcherstrateOpenApi generator for BAMOE V9,
+  properties: [{
+    DecisionService: [{
+      decisionId: "vacations",
+      localUrl: "http://localhost:8080",
+      remoteUrl: "https://p05122wf-8080.uks1.devtunnels.ms",
+    }],
+  }]
+}
