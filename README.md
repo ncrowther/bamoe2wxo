@@ -2,7 +2,7 @@
 
 ## Description
 
-This utility runs generates a WatsonxOrchestrate OpenAPI spec for BAMOE
+This utility generates a WatsonxOrchestrate OpenAPI spec for BAMOE
 
 ## Prerequisites
 
@@ -12,12 +12,11 @@ This utility runs generates a WatsonxOrchestrate OpenAPI spec for BAMOE
 
 Download this repo and extract to a folder of your choice.
 
-- Open VSC project with a DMN decision and run in dev mode.
+- Open a VSC project with a DMN decision service and run in dev mode.
 - Using the built in VSC Port tab, expose the kogito service as an external URL
 - Edit ./data/config.json file and add name of decision and both internal and external kogito URL
-- Open WoApiGenerator-main 
-- Run this class with two parameters: ./data/config.json .
-- Once finished, you should see the generated openAPI spec in the generated folder
+- Execute 'run.bat' found in the top level folder.  
+- Once finished, you should see the generated openAPI spec for the exposed Kogito service in the generated folder
 - Import the open API spec into WatsonXOrchestrate and run.
 
 ## Bugs and Limitations
