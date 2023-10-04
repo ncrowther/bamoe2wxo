@@ -1,0 +1,1 @@
+javaw.exe -classpath ".\bin;.\lib\commons-text-1.9.jar;.\lib\commons-io-2.11.0.jar;.\lib\commons-lang3-3.12.0.jar;.\lib\commons-codec-1.15.jar;.\lib\json-20210307.jar" converter.CreateOpenApi ".\data\config.json" .
