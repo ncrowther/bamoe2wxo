@@ -19,6 +19,7 @@ Download this repo and extract to a folder of your choice.
 - Generate the OpenAPI file by running the 'run' target in ./build.xml.  Alternatively execute 'run.bat' found in the top level folder.  
 - Once finished, you should see the generated openAPI spec for the service in the ./generated folder
 - Import the open API spec into WatsonXOrchestrate and run.
+-- optional - use https://icomoon.io to create a free svg icon to embed into the generated Open API under the x-ibm-application-name tag
 
 ## Bugs and Limitations
 Limited testing performed on DMN rule projects running on Kogito
