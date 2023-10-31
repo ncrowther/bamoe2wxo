@@ -24,7 +24,7 @@ Download this repo and extract to a folder of your choice.
 - Edit and save as draft
 - Enhance and Publish the skill
 - Import the skill into your home skills and select it to run
--- optional - use https://icomoon.io to create a free svg icon to embed into the generated Open API under the x-ibm-application-name tag
+- optional enhancement - use https://icomoon.io to create a free svg icon to embed into the generated Open API under the x-ibm-application-name tag
 
 ## Bugs and Limitations
 Limited testing performed on DMN rule projects running on Kogito
