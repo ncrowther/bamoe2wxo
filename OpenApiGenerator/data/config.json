@@ -1,8 +1,8 @@
 {
   "name": "IBM watsonx Orchestrate OpenApi generator for BAMOE V9",
   "properties": [{
-    "processId": "travels",
-    "decisionId": "",
+    "processId": "",
+    "decisionId": "TrafficViolation",
     "restEndpoint": [{
       "localUrl": "http://localhost:8080",
       "remoteUrl": "https://p05122wf-8080.uks1.devtunnels.ms/"

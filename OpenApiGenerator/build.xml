@@ -45,8 +45,7 @@
 	<target name="run">
 		<java fork="true" classname="${main-class}">
 			<arg value="${config.dir}\config.json" />
-			<arg value="." />	
-			<arg value="Y" />				
+			<arg value="." />		
 			<classpath>
                 <path refid="classpath"/>
 				<path location="${lib.dir}/${jar.namne}" />
