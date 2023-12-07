@@ -1,0 +1,204 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+      "title": "dmn-quarkus-example API",
+      "contact": {
+          "email": "ncrowther@uk.ibm.com"
+      },
+      "version": "1.43.0.Final"
+  },
+  "servers": [
+      {
+          "url": "https://p05122wf-8080.uks1.devtunnels.ms"
+      }
+  ],
+  "paths": {
+      "/TrafficViolation": {
+          "get": {
+              "tags": [
+                  "Traffic Violation Resource"
+              ],
+              "responses": {
+                  "200": {
+                      "description": "OK",
+                      "content": {
+                          "application/xml": {
+                              "schema": {
+                                  "type": "string"
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          "post": {
+              "tags": [
+                  "Traffic Violation Resource"
+              ],
+              "requestBody": {
+                  "description": "DMN input",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "/dmnDefinitions.json#/definitions/InputSet"
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "default": {
+                      "description": "DMN output",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "/dmnDefinitions.json#/definitions/OutputSet"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/TrafficViolation/dmnresult": {
+          "post": {
+              "tags": [
+                  "Traffic Violation Resource"
+              ],
+              "requestBody": {
+                  "description": "DMN input",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "/dmnDefinitions.json#/definitions/InputSet"
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "OK"
+                  }
+              }
+          }
+      }
+  }
+}
+
+
+{
+  "definitions": {
+      "tFine": {
+          "type": "object",
+          "properties": {
+              "Amount": {
+                  "type": "number",
+                  "x-dmn-type": "FEEL:number"
+              },
+              "Points": {
+                  "type": "number",
+                  "x-dmn-type": "FEEL:number"
+              }
+          },
+          "x-dmn-type": "DMNType{ https://github.com/kiegroup/drools/kie-dmn/_A4BCA8B8-CF08-433F-93B2-A2598F19ECFF : tFine }"
+      },
+      "OutputSet": {
+          "type": "object",
+          "properties": {
+              "Fine": {
+                  "$ref": "#/definitions/tFine"
+              },
+              "Suspend": {
+                  "type": "string",
+                  "x-dmn-type": "FEEL:string"
+              },
+              "Violation": {
+                  "$ref": "#/definitions/tViolation"
+              },
+              "Driver": {
+                  "$ref": "#/definitions/tDriver"
+              }
+          },
+          "x-dmn-type": "DMNType{ https://github.com/kiegroup/drools/kie-dmn/_A4BCA8B8-CF08-433F-93B2-A2598F19ECFF : OutputSet }",
+          "x-dmn-descriptions": {}
+      },
+      "tDriver": {
+          "type": "object",
+          "properties": {
+              "Name": {
+                  "type": "string",
+                  "x-dmn-type": "FEEL:string"
+              },
+              "Age": {
+                  "type": "number",
+                  "x-dmn-type": "FEEL:number"
+              },
+              "State": {
+                  "type": "string",
+                  "x-dmn-type": "FEEL:string"
+              },
+              "City": {
+                  "type": "string",
+                  "x-dmn-type": "FEEL:string"
+              },
+              "Points": {
+                  "type": "number",
+                  "x-dmn-type": "FEEL:number"
+              }
+          },
+          "x-dmn-type": "DMNType{ https://github.com/kiegroup/drools/kie-dmn/_A4BCA8B8-CF08-433F-93B2-A2598F19ECFF : tDriver }"
+      },
+      "InputSet": {
+          "required": [
+              "Violation",
+              "Driver"
+          ],
+          "type": "object",
+          "properties": {
+              "Violation": {
+                  "$ref": "#/definitions/tViolation"
+              },
+              "Driver": {
+                  "$ref": "#/definitions/tDriver"
+              }
+          },
+          "x-dmn-type": "DMNType{ https://github.com/kiegroup/drools/kie-dmn/_A4BCA8B8-CF08-433F-93B2-A2598F19ECFF : InputSet }",
+          "x-dmn-descriptions": {}
+      },
+      "tViolation": {
+          "type": "object",
+          "properties": {
+              "Code": {
+                  "type": "string",
+                  "x-dmn-type": "FEEL:string"
+              },
+              "Date": {
+                  "format": "date",
+                  "type": "string",
+                  "x-dmn-type": "FEEL:date"
+              },
+              "Type": {
+                  "$ref": "#/definitions/tViolation__Type"
+              },
+              "Speed Limit": {
+                  "type": "number",
+                  "x-dmn-type": "FEEL:number"
+              },
+              "Actual Speed": {
+                  "type": "number",
+                  "x-dmn-type": "FEEL:number"
+              }
+          },
+          "x-dmn-type": "DMNType{ https://github.com/kiegroup/drools/kie-dmn/_A4BCA8B8-CF08-433F-93B2-A2598F19ECFF : tViolation }"
+      },
+      "tViolation__Type": {
+          "enum": [
+              "speed",
+              "parking",
+              "driving under the influence"
+          ],
+          "type": "string",
+          "x-dmn-type": "FEEL:string",
+          "x-dmn-allowed-values": "\"speed\", \"parking\", \"driving under the influence\""
+      }
+  }
+}

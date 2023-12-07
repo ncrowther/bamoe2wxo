@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.34">
+<file name="E:\IBAMOE\kogito-examples-stable\kogito-examples-stable\kogito-quarkus-examples\dmn-quarkus-example\src\test\java\org\kie\kogito\dmn\quarkus\example\NativeTrafficViolationIT.java">
+</file>
+<file name="E:\IBAMOE\kogito-examples-stable\kogito-examples-stable\kogito-quarkus-examples\dmn-quarkus-example\src\test\java\org\kie\kogito\dmn\quarkus\example\TrafficViolationTest.java">
+</file>
+<file name="E:\IBAMOE\kogito-examples-stable\kogito-examples-stable\kogito-quarkus-examples\dmn-quarkus-example\src\test\java\testscenario\KogitoScenarioJunitActivatorTest.java">
+</file>
+<file name="E:\IBAMOE\kogito-examples-stable\kogito-examples-stable\kogito-quarkus-examples\dmn-quarkus-example\src\main\resources\application.properties">
+</file>
+<file name="E:\IBAMOE\kogito-examples-stable\kogito-examples-stable\kogito-quarkus-examples\dmn-quarkus-example\src\test\resources\application.properties">
+</file>
+</checkstyle>
