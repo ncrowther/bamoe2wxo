@@ -1,0 +1,7 @@
+# RPA
+*.wad
+
+#Nodejs
+*node_modules*
+
+*\out

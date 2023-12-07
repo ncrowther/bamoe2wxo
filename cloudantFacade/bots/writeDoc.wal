@@ -1,0 +1,62 @@
+
+	YDJ_—YþEµÕ¨‚Ñgš„ß// Description
+//	RPA Bot that writes a record to a Cloudant database
+//
+// Input Variables:
+// customerNo - unique key
+// lastname
+// firstName 
+// dob 
+//  address
+//
+// Output Variables
+// 	out_success     - boolean value indicating success or failure
+// 	out_response   - Description of error code. For example "Cloudant database not found"
+//
+defVar --name customerNo --type String --value T123456 --parameter 
+defVar --name lastname --type String --value Crowther --parameter 
+defVar --name firstName --type String --value Nigel --parameter 
+defVar --name dob --type String --value "15/06/76" --parameter 
+defVar --name address --type String --value "45 Bond St." --parameter 
+defVar --name out_success --type Boolean --output 
+defVar --name out_response --type String --output 
+defVar --name headers --type StringDictionary --innertype String
+defVar --name file_bytes --type List --innertype Byte
+defVar --name file_base64 --type String
+defVar --name http_status --type Numeric
+defVar --name datatable --type DataTable
+defVar --name rows --type Numeric
+defVar --name cols --type Numeric
+defVar --name accessToken --type String
+defVar --name databaseName --type String --value wxodb
+defVar --name iamUrl --type String --value "https://iam.cloud.ibm.com/identity/token"
+defVar --name cloudantURL --type String --value "https://724c8e7f-5faa-49e1-8dc0-7a39ffd871ad-bluemix.cloudantnosqldb.appdomain.cloud"
+
+goSub --label createAccessToken
+goSub --label writeToDatabase
+
+beginSub --name createAccessToken
+strDictAdd --key "ibm-service-instance-id" --value katchdb --dictionary ${headers}
+
+httpRequest --verb "Post" --url "${iamURL}" --headers ${headers} --formatter "FormUrlEncoded" --source " " --data "{\"grant_type\":\"urn:ibm:params:oauth:grant-type:apikey\",\"response_type\":\"cloud_iam\",\"apikey\":\"MnzpcY1I5LpUG2mtl4a-_93qBxL2PAXakBn6Pf-CIg69\"}" out_success=success out_response=value
+logMessage --message "Success: ${out_success}\r\nResponse: ${out_response}" --type "Info"
+
+jsonToTable --handleError  --json "${out_response}" --jsonPath "$" datatable=value rows=rows cols=columns out_success=success
+
+logMessage --message "Response: ${datatable}\r\n" --type "Info"
+getTableCell --dataTable ${datatable} --column 1 --row 1 accessToken=value
+
+logMessage --message "AccessToken: ${accessToken}\r\n" --type "Info"
+
+// Add to subsequent http headers to access the database
+strDictAdd --key Authorization --value "Bearer ${accessToken}" --dictionary ${headers}
+
+endSub
+
+beginSub --name writeToDatabase
+httpRequest --verb "Post" --url "${cloudantURL}/${databaseName}" --headers ${headers} --formatter "Json" --source "{\r\n  \"_id\": \"${customerNo}\",\r\n  \"customerNo\": \"${customerNo}\",\r\n  \"lastname\": \"${lastname}\",\r\n  \"firstname\": \"${firstName}\",\r\n  \"address\": \"${address}\",\r\n  \"dob\": \"${dob}\"\r\n}" out_success=success out_response=value
+logMessage --message "Success: ${out_success}\r\nResponse: ${out_response}" --type "Info"
+endSub
+
+
+"	àHb|kA¨:Ê÷y*	23.0.10.0

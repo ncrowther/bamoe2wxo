@@ -1,0 +1,19 @@
+{
+  "appId":{
+      "clientId":"f3bfa8cf-db87-40ba-a28f-deebf486fe45",
+      "oauthServerUrl":"https://us-south.appid.cloud.ibm.com/oauth/v4/807270f5-5173-4ec7-8064-3727305d62b9",
+      "profilesUrl":"https://us-south.appid.cloud.ibm.com",
+      "secret":"YWRmMmZjOTEtM2MzNy00YWQyLTk4MDItN2I2MzcwMDJhODc1",
+      "tenantId":"807270f5-5173-4ec7-8064-3727305d62b9",
+      "redirectUri":"http://localhost:3000/ibm/cloud/appid/callback"
+  },
+
+   "winWireConfig": {
+      "userDb": "",
+      "winWireDb": "",
+      "EMEA": "1E,",
+      "AMERICAS": "4N,4G,8L,4B,4N,4L,",
+      "APAC": "1C,",
+      "timerInterval": 6000
+  }
+}

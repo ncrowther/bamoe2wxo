@@ -1,0 +1,5 @@
+applications:
+- name: Datafacade
+  memory: 256M
+  services:
+  - appID_NTC
