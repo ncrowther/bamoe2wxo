@@ -1,10 +1,11 @@
 {
-  name: WatsonXOrcherstrateOpenApi generator for BAMOE V9,
-  properties: [{
-    DecisionService: [{
-      decisionId: "WeatherAdvice",
-      localUrl: "http://localhost:8080",
-      remoteUrl: "https://p05122wf-8080.uks1.devtunnels.ms/",
-    }],
+  "name": "IBM watsonx Orchestrate OpenApi generator for BAMOE V9",
+  "properties": [{
+    "processId": "travels",
+    "decisionId": "",
+    "restEndpoint": [{
+      "localUrl": "http://localhost:8080",
+      "remoteUrl": "https://p05122wf-8080.uks1.devtunnels.ms/"
+    }]
   }]
 }

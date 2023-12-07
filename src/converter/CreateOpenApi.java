@@ -51,7 +51,7 @@ public class CreateOpenApi {
 			} else {
 				throw new Exception("No base directory specified");
 			}
-			
+
 			System.out.println("Config file :" + configFile);
 
 			String jsonString = readFile(configFile);
@@ -60,36 +60,71 @@ public class CreateOpenApi {
 
 			System.out.println(apiConfig);
 
-			ApiContent apiContent = getApiContent(apiConfig);
-
-			final String generatedDir = baseDir + "\\generated\\";
-
-			createDirIfDoesNotExist(generatedDir);
-
-			String openApiFile = generatedDir + StringUtils.convertToTitleCase(apiConfig.getDecisionId());
-			String externalOpenApiFileName = openApiFile + ".json";
-
-			OpenApiWriter.writeExternalApiFile(externalOpenApiFileName, apiConfig, apiContent);
-			System.out.println("External API generated in " + externalOpenApiFileName);
-
+			if (apiConfig.getDecisionId().equals("")) {
+				createProcessApi(baseDir, apiConfig);
+			} else {
+				createDecisionApi(baseDir, apiConfig);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private static ApiContent getApiContent(ApiConfig apiConfig) throws KogitoApiException {
+	private static void createDecisionApi(String baseDir, ApiConfig apiConfig) throws KogitoApiException, IOException {
+		ApiContent decisionApiContent = getDecisionApiContent(apiConfig);
+
+		final String generatedDir = baseDir + "\\generated\\";
+
+		createDirIfDoesNotExist(generatedDir);
+
+		String openApiFile = generatedDir + StringUtils.convertToTitleCase(apiConfig.getDecisionId());
+		String decisionOpenApiFileName = openApiFile + ".json";
+
+		OpenApiWriter.writeDecisionOpenApiFile(decisionOpenApiFileName, apiConfig, decisionApiContent);
+		System.out.println("Decision Open API generated in " + decisionOpenApiFileName);
+	}
+
+	private static void createProcessApi(String baseDir, ApiConfig apiConfig) throws KogitoApiException, IOException {
+		ApiContent processApiContent = getProcessApiContent(apiConfig);
+
+		final String generatedDir = baseDir + "\\generated\\";
+
+		createDirIfDoesNotExist(generatedDir);
+
+		String openApiFile = generatedDir + StringUtils.convertToTitleCase(apiConfig.getProcessId());
+		String processOpenApiFileName = openApiFile + ".json";
+
+		OpenApiWriter.writeProcessOpenApiFile(processOpenApiFileName, apiConfig, processApiContent);
+		System.out.println("Process Open API generated in " + processOpenApiFileName);
+	}	
+	
+	private static ApiContent getDecisionApiContent(ApiConfig apiConfig) throws KogitoApiException {
 
 		ApiContent apiContent = new ApiContent();
 
-	    String schema = KogitoApi.getOpenApiSchema(apiConfig.getLocalUrl());
+		String schema = KogitoApi.getDecisionOpenApiSchema(apiConfig.getLocalUrl());
 
 		apiContent.setSchema(schema);
 
-		System.out.println("OpenApiContent: " + apiContent);
+		System.out.println("Decision OpenApi Content: " + apiContent);
 
 		return apiContent;
 	}
+	
+	private static ApiContent getProcessApiContent(ApiConfig apiConfig) throws KogitoApiException {
+
+		ApiContent apiContent = new ApiContent();
+
+		String schema = KogitoApi.getProcessOpenApiSchema(apiConfig.getLocalUrl(), apiConfig.getProcessId());
+
+		apiContent.setSchema(schema);
+
+		System.out.println("Process OpenApi Content: " + apiContent);
+
+		return apiContent;
+	}
+	
 
 	private static void createDirIfDoesNotExist(final String generatedDir) {
 		File directory = new File(generatedDir);

@@ -65,7 +65,7 @@ public class KogitoApi {
 		HttpsURLConnection.setDefaultHostnameVerifier(validHosts);
 	}
 
-	public static String getOpenApiSchema(String localUrl) throws KogitoApiException {
+	public static String getDecisionOpenApiSchema(String localUrl) throws KogitoApiException {
 
 		String schema = "";
 		String getOpenApiSchemaURL = localUrl + "/dmnDefinitions.json";
@@ -84,6 +84,28 @@ public class KogitoApi {
 
 		return schema;
 	}
+	
+	public static String getProcessOpenApiSchema(String localUrl, String processId) throws KogitoApiException {
+
+		String schema = "";
+		//String getOpenApiSchemaURL = localUrl + "/" + processId + "/schema";
+		//String getOpenApiSchemaURL = localUrl + "/docs/openapi.json";
+		String getOpenApiSchemaURL = localUrl + "/q/openapi?format=json";
+
+		HashMap<String, String> headerMap = new HashMap<String, String>();
+
+		headerMap.put("Content-Type", "application/json");
+
+		try {
+			ignoreSSL();
+			schema = doRest("GET", getOpenApiSchemaURL, null, headerMap, null, null);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return schema;
+	}	
 
 	public static String doRest(String command, String urlString, String content, HashMap<String, String> headerMap,
 			String userid, String password) throws Exception {
@@ -161,7 +183,7 @@ public class KogitoApi {
 
 		try {
 
-			String result = getOpenApiSchema(baseURL);
+			String result = getDecisionOpenApiSchema(baseURL);
 
 		    System.out.println("Result: " + result);
 

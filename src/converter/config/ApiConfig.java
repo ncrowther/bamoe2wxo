@@ -2,9 +2,16 @@ package converter.config;
 
 public class ApiConfig {
 	String decisionId;
+	String processId;
 	String localUrl;
 	String remoteUrl;
 	
+	public String getProcessId() {
+		return processId;
+	}
+	public void setProcessId(String processId) {
+		this.processId = processId;
+	}
 	public String getDecisionId() {
 		return decisionId;
 	}
@@ -23,9 +30,5 @@ public class ApiConfig {
 	public void setRemoteUrl(String remoteUrl) {
 		this.remoteUrl = remoteUrl;
 	}
-	
-	@Override
-	public String toString() {
-		return "ApiConfig [decisionId=" + decisionId + ", localUrl=" + localUrl + ", remoteUrl=" + remoteUrl + "]";
-	}
 }
+	

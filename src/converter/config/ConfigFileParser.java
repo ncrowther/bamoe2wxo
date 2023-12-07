@@ -39,52 +39,67 @@ public class ConfigFileParser implements IConfigParser {
 			for (int i = 0; i < propertiesArr.length(); i++) {
 				JSONObject property = propertiesArr.getJSONObject(i);
 				
-				if (property.has("DecisionService")) {
-					getDecisionServiceParameters(property, apiConfig);
-				}				
+				
+				if (property.has("decisionId")) {
+					getDecisionId(apiConfig, property);
+				}	
+				
+				if (property.has("processId")) {
+					getProcessId(apiConfig, property);
+				}	
+			
+				if (property.has("restEndpoint")) {
+					getRestEndpoint(apiConfig, property);
+				}							
 			}
 		}
 	}
-
-	private void getDecisionServiceParameters(JSONObject property, ApiConfig task) {
-		JSONArray inputsArr = property.getJSONArray("DecisionService");
+	private void getDecisionId(ApiConfig conf, JSONObject inputObj) {
+		String decisionId = inputObj.getString("decisionId");	
+		System.out.println("DecisionId:" + decisionId);
+		apiConfig.setDecisionId(decisionId);
+	}	
+	
+	private void getProcessId(ApiConfig conf, JSONObject inputObj) {
+		String processId = inputObj.getString("processId");	
+		System.out.println("processId:" + processId);
+		apiConfig.setProcessId(processId);
+	}	
+	
+	private void getRestEndpoint(ApiConfig task, JSONObject property) {
+		JSONArray inputsArr = property.getJSONArray("restEndpoint");
 		for (int i = 0; i < inputsArr.length(); i++) {
 			JSONObject inputObj = inputsArr.getJSONObject(i);
-			getDecisionId(task, inputObj);		
 			getLocalUrl(task, inputObj);	
 			getRemoteUrl(task, inputObj);	
 		}
 	}
-
-	private void getDecisionId(ApiConfig conf, JSONObject inputObj) {
-		String decisionId = inputObj.getString("decisionId");	
-		System.out.println("getDecisionId:" + decisionId);
-		apiConfig.setDecisionId(decisionId);
-	}	
 	
 	private void getLocalUrl(ApiConfig conf, JSONObject inputObj) {
 		String localUrl = inputObj.getString("localUrl");	
-		System.out.println("getLocalUrl:" + localUrl);
+		System.out.println("LocalUrl:" + localUrl);
 		conf.setLocalUrl(localUrl);
 	}
 	
 	private void getRemoteUrl(ApiConfig conf, JSONObject inputObj) {
 		String remoteUrl = inputObj.getString("remoteUrl");	
-		System.out.println("getRemoteUrl:" + remoteUrl);
+		System.out.println("RemoteUrl:" + remoteUrl);
 		conf.setRemoteUrl(remoteUrl);
-	}	
+	}		
 	
 	public static void main(String[] args) {
 
-	 String json = "{\r\n" + 
-	 		"  \"name\": \"WatsonXOrcherstrateOpenApi generator for BAMOE V9\",\r\n" + 
-	 		"      \"properties\": [{\r\n" + 
-	 		"        \"DecisionService\": [{\r\n" + 
-	 		"          \"decisionId\": \"CustomerRefunds\",\r\n" + 
-	 		"          \"baseUrl\": \"https://p05122wf-8080.uks1.devtunnels.ms\",\r\n" + 
-	 		"        }],\r\n" + 
-	 		"      }]\r\n" + 
-	 		"}";
+	 String json = "{\r\n"
+	 		+ "  \"name\": \"WatsonXOrcherstrateOpenApi generator for BAMOE V9\",\r\n"
+	 		+ "  \"properties\": [{\r\n"
+	 		+ "    \"restEndpoint\": [{\r\n"
+	 		+ "      \"processId\": \"traffic\",\r\n"
+	 		+ "      \"decisionId\": \"LoanEligibility\",\r\n"
+	 		+ "      \"localUrl\": \"http://localhost:8080\",\r\n"
+	 		+ "      \"remoteUrl\": \"https://p05122wf-8080.uks1.devtunnels.ms/\"\r\n"
+	 		+ "    }] \r\n"
+	 		+ "  }]\r\n"
+	 		+ "}";
 	
 	ConfigFileParser jsonParser = new ConfigFileParser(json);
 	
