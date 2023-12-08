@@ -31,10 +31,10 @@
         <dmn:text>"speed", "parking", "driving under the influence"</dmn:text>
       </dmn:allowedValues>
     </dmn:itemComponent>
-    <dmn:itemComponent id="_DDD10D6E-BD38-4C79-9E2F-8155E3A4B438" name="Speed Limit" isCollection="false">
+    <dmn:itemComponent id="_DDD10D6E-BD38-4C79-9E2F-8155E3A4B438" name="SpeedLimit" isCollection="false">
       <dmn:typeRef>number</dmn:typeRef>
     </dmn:itemComponent>
-    <dmn:itemComponent id="_229F80E4-2892-494C-B70D-683ABF2345F6" name="Actual Speed" isCollection="false">
+    <dmn:itemComponent id="_229F80E4-2892-494C-B70D-683ABF2345F6" name="ActualSpeed" isCollection="false">
       <dmn:typeRef>number</dmn:typeRef>
     </dmn:itemComponent>
   </dmn:itemDefinition>
@@ -64,7 +64,7 @@
       </dmn:input>
       <dmn:input id="_D5319F80-1C59-4736-AF2D-D29DE6B7E76D">
         <dmn:inputExpression id="_3FEB4DE3-90C6-438E-99BF-9BB1BF5B078A" typeRef="number">
-          <dmn:text>Violation.Actual Speed - Violation.Speed Limit</dmn:text>
+          <dmn:text>Violation.ActualSpeed - Violation.SpeedLimit</dmn:text>
         </dmn:inputExpression>
       </dmn:input>
       <dmn:output id="_9012031F-9C01-44E5-8CD2-E6704D594504" name="Amount" typeRef="number"/>
@@ -209,7 +209,7 @@
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
-        <dc:Bounds x="709" y="210" width="100" height="50"/>
+        <dc:Bounds x="709" y="211" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
       <dmndi:DMNShape id="dmnshape-drg-_1F9350D7-146D-46F1-85D8-15B5B68AF22A" dmnElementRef="_1F9350D7-146D-46F1-85D8-15B5B68AF22A" isCollapsed="false">
@@ -232,14 +232,14 @@
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="dmnedge-drg-_800A3BBB-90A3-4D9D-BA5E-A311DED0134F" dmnElementRef="_800A3BBB-90A3-4D9D-BA5E-A311DED0134F">
         <di:waypoint x="758" y="375"/>
-        <di:waypoint x="759" y="235"/>
+        <di:waypoint x="759" y="236"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_982211B1-5246-49CD-BE85-3211F71253CF" dmnElementRef="_982211B1-5246-49CD-BE85-3211F71253CF">
         <di:waypoint x="419" y="369"/>
         <di:waypoint x="589" y="106.5"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_AEC4AA5F-50C3-4FED-A0C2-261F90290731" dmnElementRef="_AEC4AA5F-50C3-4FED-A0C2-261F90290731">
-        <di:waypoint x="759" y="235"/>
+        <di:waypoint x="759" y="236"/>
         <di:waypoint x="589" y="106.5"/>
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
