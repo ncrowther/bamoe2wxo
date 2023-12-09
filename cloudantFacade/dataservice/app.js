@@ -38,10 +38,100 @@ app.use(express.urlencoded({ extended: true }))
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json())
 
-// //////////////// Get Cloudant Docs ////////////////////////
+// //////////////// Create Doc ////////////////////////
+app.post('/doc', async (req, res) => {
+
+  console.log('Write doc');
+
+  const newDoc = req.body;
+
+  const doc = {
+    "_id": newDoc.driverId,
+    "driverId": newDoc.driverId,
+    "date": newDoc.date,
+    "offenceType": newDoc.offenceType,
+    "speedLimit": newDoc.speedLimit,
+    "actualSpeed": newDoc.actualSpeed,
+    "fine": newDoc.fine,
+    "points": newDoc.points
+  }
+
+  await cloudantLib.createDoc(service, dbName, doc).then(function (ret) {
+
+    console.error('[App] Created doc: ' + newDoc.driverId);
+
+    res.status(200);
+    res.send(doc);
+
+  }, function (err) {
+    console.error('[App] Cloudant DB Failure in create doc: ' + err)
+    res.status(500);
+    res.send(err);
+  })
+
+})
+
+// //////////////// Update Doc ////////////////////////
+app.post('/updateDoc', async (req, res) => {
+
+  const docId = req.query.driverId;
+
+  const updateDoc = req.body;
+
+  console.log('Update doc: ' + docId)
+
+  await cloudantLib.findById(service, dbName, docId).then(function (doc) {
+
+    console.log('***Found ' + doc)
+
+    doc.date = updateDoc.date,
+    doc.offenceType = updateDoc.offenceType,
+    doc.speedLimit = updateDoc.speedLimit,
+    doc.actualSpeed = updateDoc.actualSpeed,
+    doc.fine = updateDoc.fine,
+    doc.points = updateDoc.points
+
+    console.log('Updating: ' + JSON.stringify(doc));
+
+    cloudantLib.updateDoc(service, dbName, doc)
+
+    res.status(200);
+    res.send(doc);
+
+  }, function (err) {
+    console.error('[App] Cloudant DB Failure in update: ' + err)
+    res.status(500);
+    res.send(err);
+  })
+
+})
+
+// //////////////// Get Single Doc ////////////////////////
+app.get('/doc', async (req, res) => {
+
+  const docId = req.query.driverId;
+
+  console.log('Get doc: ' + docId)
+
+  await cloudantLib.findById(service, dbName, docId).then(function (doc) {
+
+    console.log('***Found ' + doc)
+
+    res.status(200);
+    res.send(doc);
+
+  }, function (err) {
+    console.error('[App] Cloudant DB Failure in get doc: ' + err)
+    res.status(500);
+    res.send(err);
+  })
+
+})
+
+// //////////////// Get Docs ////////////////////////
 app.get('/docs', async (req, res) => {
 
-  console.log('Get cases')
+  console.log('Get docs')
 
   await cloudantLib.findAllDocs(service, dbName).then(function (docs) {
 
@@ -49,7 +139,7 @@ app.get('/docs', async (req, res) => {
     res.send(docs);
 
   }, function (err) {
-    console.error('[App] Cloudant DB Failure in get cases: ' + err)
+    console.error('[App] Cloudant DB Failure in get docs: ' + err)
     res.status(500);
     res.send(err);
   })
@@ -58,4 +148,3 @@ app.get('/docs', async (req, res) => {
 app.listen(port, () => {
   console.info('[App] Listening on http://localhost:' + port)
 })
-

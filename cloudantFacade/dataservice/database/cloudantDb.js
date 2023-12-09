@@ -1,3 +1,73 @@
+exports.findById = function findById(service, dbname, id) {
+
+  return new Promise((resolve, reject) => {
+    service.getDocument({
+      db: dbname,
+      docId: id
+    }).then(response => {
+
+      console.log('***Found doc ' + id)
+      console.log(response.result);
+
+      resolve(response.result);
+    })
+      .catch(err => {
+        console.log(err)
+        reject(err)
+      })
+  })
+}
+
+exports.createDoc = function createDoc(service, dbName, doc) {
+
+  return new Promise((resolve, reject) => {
+
+    // Create the document in Cloudant
+    service.postDocument({
+      db: dbName,
+      document: doc
+    }).then(response => {
+      console.log(response.result);
+      resolve(response.result);
+    })
+      .catch(err => {
+        console.log(err)
+        reject(err)
+      })
+  })
+}
+
+exports.updateDoc = function updateDoc(service, dbName, doc) {
+  return new Promise((resolve, reject) => {
+
+    // Update the doc record
+    const updateDoc = {
+      "_id": doc._id,
+      "_rev": doc._rev,
+      "driverId": doc.driverId,
+      "date": doc.date,
+      "offenceType": doc.offenceType,
+      "speedLimit": doc.speedLimit,
+      "actualSpeed": doc.actualSpeed,
+      "fine": doc.fine,
+      "points": doc.points
+    }
+
+    // Update the document in Cloudant
+    service.postDocument({
+      db: dbName,
+      document: updateDoc
+    }).then(response => {
+      console.log(response.result);
+      resolve(response.result);
+    });
+
+  }).catch((err) => {
+    console.error('Error occurred: ' + err.message, 'updateDoc()');
+    reject(err);
+  });
+}
+
 exports.findAllDocs = function findAllDocs(service, dbName) {
 
   return new Promise((resolve, reject) => {

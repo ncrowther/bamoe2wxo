@@ -32,7 +32,7 @@ See:
 
 ### Code Engine Hosting Prerequisites
 
- * Follow Local Host Prereqs
+ * Follow Local Host Prerequisites above
  
  * Create IBM Cloud account with Code Engine. 
 

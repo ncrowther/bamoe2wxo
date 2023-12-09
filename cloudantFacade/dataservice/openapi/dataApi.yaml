@@ -18,7 +18,7 @@ externalDocs:
   description: Find out more about IBM
   url: http://IBM.io
 servers:
-  - url: https://p05122wf-3000.uks1.devtunnels.ms
+  - url: https://dataservice.1apbmbk49s5e.eu-gb.codeengine.appdomain.cloud
 security:
   - basic_auth: []
 tags:
@@ -32,15 +32,53 @@ paths:
     get:
       tags:
         - docs
-      summary: getdocs
-      description: get docs
+      summary: get docs from cloudant
+      description: get docs from cloudant
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OutputSet'             
+                $ref: '#/components/schemas/OutputSet'        
+  /doc:
+    post:
+      tags:
+        - doc
+      summary: write a doc to cloudant
+      description: write a doc to cloudant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/DocModel'       
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocModel'        
+    get:
+      tags:
+        - doc
+      summary: get doc from cloudant
+      description: get doc from cloudant
+      parameters:
+        - in: query
+          name: driverId
+          schema:
+            type: string
+          required: true
+          description: Id of the doc to get      
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocModel'                     
 components:
   schemas:
     OutputSet:
@@ -55,20 +93,20 @@ components:
     DocModel:
       type: object
       properties:
-        _id:
+        driverId:
           type: string
-        _rev:
+        date:
           type: string
-        customerNo:
-          type: string
-        lastname:
-          type: string
-        firstname:
+        offenceType:
           type: string          
-        address:
-          type: string
-        dob:
-          type: string       
+        speedLimit:
+          type: integer    
+        actualSpeed:
+          type: integer              
+        fine:
+          type: integer   
+        points:
+          type: integer                       
 
   securitySchemes:
     basic_auth:
