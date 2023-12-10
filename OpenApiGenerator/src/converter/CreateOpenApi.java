@@ -42,14 +42,14 @@ public class CreateOpenApi {
 				configFile = args[0];
 				System.out.println("Arg[0]: " + args[0]);
 			} else {
-				throw new Exception("No config file specified");
+				configFile = "./data/config.json";
 			}
 
 			if (args.length > 1) {
 				baseDir = args[1];
 				System.out.println("Arg[1]: " + args[1]);
 			} else {
-				throw new Exception("No base directory specified");
+				baseDir = ".";
 			}
 
 			System.out.println("Config file :" + configFile);
