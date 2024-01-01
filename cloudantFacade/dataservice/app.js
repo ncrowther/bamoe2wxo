@@ -11,13 +11,15 @@
  limitations under the License.
  */
 
+ // IMPORTANT: Start  DOS command, execute setenv.bat then run 'npm start'
+
 const express = require('express')
 var https = require('https');
 const cloudantLib = require('./database/cloudantDb.js')
 const session = require('express-session')
 const { CloudantV1 } = require('@ibm-cloud/cloudant')
 const service = CloudantV1.newInstance()
-const DBNAME = process.env.DBNAME
+const dbname = process.env.dbname
 const fs = require('fs');
 
 const app = express()
@@ -30,7 +32,8 @@ app.use(bodyParser.json())
 const port = process.env.PORT || 3000 //8080
 
 // ////////////// Cloudant Setup //////////////////////
-const dbName = 'wxodb'
+
+console.log('Connected to ' + dbname);
 
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended: true }))
@@ -56,16 +59,18 @@ app.post('/doc', async (req, res) => {
     "points": newDoc.points
   }
 
-  await cloudantLib.createDoc(service, dbName, doc).then(function (ret) {
+  await cloudantLib.createDoc(service, dbname, doc).then(function (ret) {
 
     console.error('[App] Created doc: ' + newDoc.driverId);
 
     res.status(200);
+    res.set('Access-Control-Allow-Origin', '*');
     res.send(doc);
 
   }, function (err) {
     console.error('[App] Cloudant DB Failure in create doc: ' + err)
     res.status(500);
+    res.set('Access-Control-Allow-Origin', '*');
     res.send(err);
   })
 
@@ -80,7 +85,7 @@ app.post('/updateDoc', async (req, res) => {
 
   console.log('Update doc: ' + docId)
 
-  await cloudantLib.findById(service, dbName, docId).then(function (doc) {
+  await cloudantLib.findById(service, dbname, docId).then(function (doc) {
 
     console.log('***Found ' + doc)
 
@@ -93,14 +98,16 @@ app.post('/updateDoc', async (req, res) => {
 
     console.log('Updating: ' + JSON.stringify(doc));
 
-    cloudantLib.updateDoc(service, dbName, doc)
+    cloudantLib.updateDoc(service, dbname, doc)
 
     res.status(200);
+    res.set('Access-Control-Allow-Origin', '*');
     res.send(doc);
 
   }, function (err) {
     console.error('[App] Cloudant DB Failure in update: ' + err)
     res.status(500);
+    res.set('Access-Control-Allow-Origin', '*');
     res.send(err);
   })
 
@@ -113,16 +120,18 @@ app.get('/doc', async (req, res) => {
 
   console.log('Get doc: ' + docId)
 
-  await cloudantLib.findById(service, dbName, docId).then(function (doc) {
+  await cloudantLib.findById(service, dbname, docId).then(function (doc) {
 
     console.log('***Found ' + doc)
 
     res.status(200);
+    res.set('Access-Control-Allow-Origin', '*');
     res.send(doc);
 
   }, function (err) {
     console.error('[App] Cloudant DB Failure in get doc: ' + err)
     res.status(500);
+    res.set('Access-Control-Allow-Origin', '*');
     res.send(err);
   })
 
@@ -133,14 +142,16 @@ app.get('/docs', async (req, res) => {
 
   console.log('Get docs')
 
-  await cloudantLib.findAllDocs(service, dbName).then(function (docs) {
+  await cloudantLib.findAllDocs(service, dbname).then(function (docs) {
 
     res.status(200);
+    res.set('Access-Control-Allow-Origin', '*');
     res.send(docs);
 
   }, function (err) {
     console.error('[App] Cloudant DB Failure in get docs: ' + err)
     res.status(500);
+    res.set('Access-Control-Allow-Origin', '*');
     res.send(err);
   })
 })

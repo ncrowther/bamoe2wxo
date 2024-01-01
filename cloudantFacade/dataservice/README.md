@@ -1,8 +1,7 @@
 # Litigation Finance Demo
 
-This package creates a datafade into a Cloudant database.  
+This package creates a datafacade into a Cloudant database.  
 The facade is exposed as an OpenAPI where it can be ingested by WatsonxOrchestrate. 
-The dataservice is a Nodejs Database facade on top of Cloudant.  It uses an OpenAPI spec with which to invoke it. 
 See:
 
  [OpenApi](\openapi\dataApi.yaml)
