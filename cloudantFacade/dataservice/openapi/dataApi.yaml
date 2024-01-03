@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Cloudant Data Facade
+  title: [YOUR_INITIALS] Cloudant Data Facade
   description: 'This is an openAPI on top of a nodejs Cloudant facade '
   termsOfService: http://IBM.io/terms/
   contact:
@@ -22,7 +22,7 @@ servers:
 security:
   - basic_auth: []
 tags:
-  - name: Cloudant Data Facade
+  - name: [YOUR_INITIALS] Cloudant Data Facade
     description: Nodejs facade on top of Cloudant
     externalDocs:
       description: Find out more
