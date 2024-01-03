@@ -32,8 +32,8 @@ paths:
     get:
       tags:
         - docs
-      summary: get docs from cloudant
-      description: get docs from cloudant
+      summary: [YOUR_INITIALS] get docs from cloudant
+      description: Get docs from cloudant
       responses:
         '200':
           description: OK
@@ -45,8 +45,8 @@ paths:
     post:
       tags:
         - doc
-      summary: write a doc to cloudant
-      description: write a doc to cloudant
+      summary: [YOUR_INITIALS] write a doc to cloudant
+      description: Write a doc to cloudant
       requestBody:
         required: true
         content:
@@ -63,8 +63,8 @@ paths:
     get:
       tags:
         - doc
-      summary: get doc from cloudant
-      description: get doc from cloudant
+      summary: [YOUR_INITIALS] get doc from cloudant
+      description: Get doc from cloudant
       parameters:
         - in: query
           name: driverId
