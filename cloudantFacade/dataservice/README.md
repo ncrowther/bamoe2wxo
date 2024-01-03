@@ -43,55 +43,39 @@ See:
 
 ### Deployment to code engine on IBM Cloud
 
-1. Open Git Bash shell from VSC
+1.	Open Git Bash shell from VSC
 
-2. Login to IBM Cloud.
+2.	Login to IBM Cloud.
 
-```sh
-   ibmcloud login --sso
-```
+    ibmcloud login --sso
 
-3. Select an account that has CodeEngine.  E.g. ITZ0V2
+3.	In the IBM Cloud console, go to Manage > Account > Account resources > Resource groups.  Select the resource group for Code Engine. E.g. default
 
-4. Select the code engine project: e.g 
+    ibmcloud target -g default
 
-```sh
-ibmcloud ce project select -n [PROJECT_NAME]
-```
+4.	Select the code engine project:  
 
-5. Target a organization and space in which you have access to Code Engine:
-  
-  ```sh
-ibmcloud target  -g code-engine-270007dduu-su48ub9k
-```
+    ibmcloud ce project select -n [PROJECT_NAME]
 
-to target org/space for IBM Tech zone. 
+5.	Start Docker Desktop
 
-6. Start Docker Desktop
+7.	Within this folder, edit CEbuild.sh and CErun.sh and change the REGISTRY to your Docker registry.
 
-7. Edit build.sh and run.sh and configure the repo to conform to your Docker repo  
+8.	Using the same bash shell, deploy the sample application to your docker repo:
 
-8. Open a bash shell in VSC.  Deploy the sample application to your docker repo. From the app's folder do:
+./CEbuild
 
-  ```sh
-  ./build
-  ```
+9.	Deploy the application to Code Engine on IBM Cloud. From the app's folder do:
 
-9. Edit setenv.sh to conform to your Cloudant database 
+./CErun
 
-10. Run setenv.sh
+10.	Open the URL using the IBM Cloud Code Engine route for the refunds application
 
-  ```sh
-  ./setenv.sh
-  ```
+## Learn More about React
 
-11. Using the same bash shell, deploy the application to Code Engine on IBM Cloud. From the app's folder do:
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-  ```sh
-  ./run
-  ```
-
-12. Open your IBM Cloud app route in the browser.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 ## License
