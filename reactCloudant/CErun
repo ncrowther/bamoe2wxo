@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Env Vars:
+# REGISTRY: name of the image registry/namespace to get the images
+
+# Clean up previous run
+function clean() {
+  set +ex
+  echo Cleaning...
+  (
+  ibmcloud ce app delete -n fineui -f
+  rm -f out
+  ) > /dev/null 2>&1
+}
+
+clean
+[[ "$1" == "clean" ]] && exit 0
+
+set -ex
+export REGISTRY=${REGISTRY:-docker.io/cloudcapped}
+
+# Create the app
+ibmcloud ce app create -n fineui --image ${REGISTRY}/fineui
+
+# Get the URL of the app for later use
+URL=$(ibmcloud ce app get -n fineui -o url)
+
+# Now call it
+curl --location $URL | tee out
+#if ! [[ "${PIPESTATUS[200]}" == "0" ]] ; then
+#  echo "Expected 200 return code"
+#  cat out
+#  exit 1
+#fi
+
+
+# Since the image can be used as a job too, test it
+#ibmcloud ce jobrun submit --name hi-job --ai=1 --image ${REGISTRY}/fruitcounter --wait 
+#ibmcloud ce jobrun logs -n hi-job | tee out | grep "Hello from.*job" || exit 1
+
+# Clean up
+#clean
