@@ -49,7 +49,6 @@ app.post('/doc', async (req, res) => {
   const newDoc = req.body;
 
   const doc = {
-    "_id": newDoc.driverId,
     "driverId": newDoc.driverId,
     "date": newDoc.date,
     "offenceType": newDoc.offenceType,
