@@ -60,7 +60,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ./CErun
 
-10.	Open the URL using the IBM Cloud Code Engine route for the refunds application
+10.	Open the URL using the IBM Cloud Code Engine route for the application
 
 ## Learn More about React
 

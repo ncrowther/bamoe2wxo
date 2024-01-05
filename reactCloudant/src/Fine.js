@@ -27,7 +27,7 @@ const Fine = () => {
 
   // to handle error
   if (error) {
-    return <div className="error">Error fetching</div>
+    return <div className="error">Error fetching data from Cloudnat</div>
   }
 
   return (
@@ -52,7 +52,7 @@ const Fine = () => {
 
         <br />
         <Panel header="" class="p-panel-title ml-2 text-primary">
-          <TotalFines data={data} driverId={queryStringParams.driverId} />
+          <TotalFines data={data} driverId={queryStringParams.driverId} disqualified={queryStringParams.disqualified} />
         </Panel>
 
       </Divider>
