@@ -29,27 +29,27 @@ const TotalFines = ({ data, driverId, disqualified }) => {
   console.log("totalFine: " + totalFine)
   console.log("disqualified: " + disqualified)
 
+  const content = <>
+    <p className="m-0">
+      <b>Fine: £{totalFine} </b>
+      <br /> <br />
+      <b>Points: {totalPoints}</b>
+    </p>
+  </>;
+
   if (disqualified === 'true') {
     return (
       <Card title="DISQUALIFIED" className="md:w-25rem" style={{ color: 'red' }}>
-        <p className="m-0">
-          <b>Fine: £{totalFine} </b>
-          <br /> <br />
-          <b>Points: {totalPoints}</b>
-        </p>
+        {content}
       </Card>
     );
   } else {
     return (
-    <Card title="Fine" className="md:w-25rem">
-      <p className="m-0">
-        <b>Fine: £{totalFine} </b>
-        <br /> <br />
-        <b>Points: {totalPoints}</b>
-      </p>
-    </Card>
+      <Card title="Fine" className="md:w-25rem">
+        {content}
+      </Card>
     );
   }
-}
+};
 
 export default TotalFines;

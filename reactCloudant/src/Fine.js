@@ -6,7 +6,7 @@ import TotalFines from './TotalFines.js';
 import { Panel } from 'primereact/panel';
 import { Divider } from 'primereact/divider';
 import queryString from 'query-string';
-import "primereact/resources/themes/lara-light-cyan/theme.css";
+import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
 
 const Fine = () => {
   const queryStringParams = queryString.parse(window.location.search);
@@ -56,6 +56,11 @@ const Fine = () => {
         </Panel>
 
       </Divider>
+
+      <div>
+
+    </div>
+
     </Divider>
 
   );
