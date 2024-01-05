@@ -36,7 +36,7 @@ const Fine = () => {
       <Divider>
 
         <Panel header="" class="p-panel-title ml-2 text-primary">
-          <img style={{ width: 100, height: 120 }} align="right" src="police.jpg" alt="Police" />
+          <img style={{ width: 160, height: 192 }} align="right" src="police.jpg" alt="Police" />
           <DriverDetails driverId={queryStringParams.driverId} />
         </Panel>
         <br />

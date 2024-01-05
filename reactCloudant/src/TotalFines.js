@@ -31,7 +31,7 @@ const TotalFines = ({ data, driverId, disqualified }) => {
 
   if (disqualified === 'true') {
     return (
-      <Card title="DISQUALFIED" className="md:w-25rem" style={{ color: 'red' }}>
+      <Card title="DISQUALIFIED" className="md:w-25rem" style={{ color: 'red' }}>
         <p className="m-0">
           <b>Fine: £{totalFine} </b>
           <br /> <br />
@@ -40,13 +40,15 @@ const TotalFines = ({ data, driverId, disqualified }) => {
       </Card>
     );
   } else {
-    <Card title="Fine" className="md:w-25rem" style={{ color: 'black' }}>
+    return (
+    <Card title="Fine" className="md:w-25rem">
       <p className="m-0">
         <b>Fine: £{totalFine} </b>
         <br /> <br />
         <b>Points: {totalPoints}</b>
       </p>
     </Card>
+    );
   }
 }
 
