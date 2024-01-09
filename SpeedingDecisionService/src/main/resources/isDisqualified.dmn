@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_093BB1B7-B5F4-4AD4-86D9-220DC272FDC1" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_5C6C9468-6D9E-4188-BF2F-1E9B6DD0C014" name="isDisqualified" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_093BB1B7-B5F4-4AD4-86D9-220DC272FDC1">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_BCD306AD-89ED-48A3-90D4-7438AC8C1531" name="tOffence" isCollection="false">
+    <dmn:itemComponent id="_A8605802-445C-4114-8780-46D358369844" name="points" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_5AB2D801-6243-4760-A032-60DCC8DD46B6" name="offenceDate" isCollection="false">
+      <dmn:typeRef>date</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_B20A9E6D-BC6B-421A-8F05-2A551A3DCEF1" name="tOffences" isCollection="true">
+    <dmn:typeRef>tOffence</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_E4A76B7D-6171-44A7-85BF-A98FAFA93662" name="Offences">
+    <dmn:extensionElements/>
+    <dmn:variable id="_FD89A39E-F5A7-46AA-8450-AA39E42B78A9" name="Offences" typeRef="tOffences"/>
+  </dmn:inputData>
+  <dmn:decision id="_4F177D9B-9086-445E-81FB-7F8442ECEBDE" name="offencesInLast24Months">
+    <dmn:extensionElements/>
+    <dmn:variable id="_DBCA64E3-E056-4970-B60F-5F494305A6F4" name="offencesInLast24Months" typeRef="tOffences"/>
+    <dmn:informationRequirement id="_106654A4-3A4E-4EAF-899A-6B42BB541AA9">
+      <dmn:requiredInput href="#_E4A76B7D-6171-44A7-85BF-A98FAFA93662"/>
+    </dmn:informationRequirement>
+    <dmn:context id="_2302C6CD-FFDE-47AF-9710-84CC2062FAA5">
+      <dmn:contextEntry>
+        <dmn:variable id="_5E4B799C-94B6-4F43-AF92-BF3A5CCC56F6" name="TWO_YEARS_AGO" typeRef="date"/>
+        <dmn:literalExpression id="_5551E4A1-704E-48E6-A1D4-56AEBD390960">
+          <dmn:text>today() - duration("P24M")</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_FA494FCD-FBD2-4831-935D-3110362AF0FA">
+          <dmn:text>Offences[ offenceDate &gt; TWO_YEARS_AGO ]</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
+  <dmn:decision id="_DDC59774-BF16-4395-A2F9-8DD7AC62C58C" name="isDisqualified">
+    <dmn:extensionElements/>
+    <dmn:variable id="_1DF7FCD8-66F7-4C62-AF47-8271354AF3C9" name="isDisqualified" typeRef="boolean"/>
+    <dmn:informationRequirement id="_E9A2E7A4-A167-4D92-99BB-B89F36633FAF">
+      <dmn:requiredDecision href="#_8A401D94-10C7-4E6C-8C03-64269D1980DE"/>
+    </dmn:informationRequirement>
+    <dmn:context id="_A8400DE2-DD14-48B9-9C5B-68E1B0BA5322">
+      <dmn:contextEntry>
+        <dmn:variable id="_FAA02BF2-15D0-48DA-8EAB-BD1758E21FEA" name="BANNED_POINTS" typeRef="number"/>
+        <dmn:literalExpression id="_F3E4BEA1-B535-4842-A119-1A7836AA8765">
+          <dmn:text>12</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_58F97B94-9794-4F27-AE93-ED95B7406D8E">
+          <dmn:text>if pointsInLast24Months &gt;= BANNED_POINTS
+then
+  true
+else 
+  false</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
+  <dmn:decision id="_8A401D94-10C7-4E6C-8C03-64269D1980DE" name="pointsInLast24Months">
+    <dmn:extensionElements/>
+    <dmn:variable id="_466C7E8B-7935-42A3-A3E8-1C4A08D40CBB" name="pointsInLast24Months" typeRef="number"/>
+    <dmn:informationRequirement id="_90B92188-19EA-41FD-934C-81557847B800">
+      <dmn:requiredDecision href="#_4F177D9B-9086-445E-81FB-7F8442ECEBDE"/>
+    </dmn:informationRequirement>
+    <dmn:context id="_945A552E-9200-4C4C-8849-E12E64DB2FEF">
+      <dmn:contextEntry>
+        <dmn:variable id="_2599D743-61A0-4274-9445-99B6870537A0" name="totalPoints" typeRef="number"/>
+        <dmn:literalExpression id="_475CB053-102C-4A2E-AA5F-D6F7E6DBED0B">
+          <dmn:text>sum( offencesInLast24Months.points)</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_B9119A9C-DC71-4FF7-945C-5511C0A83469">
+          <dmn:text>if (totalPoints = null) then 0 else totalPoints</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_C0AD8D02-1B8E-4D44-B4F2-AFBE27D9EEA0" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_2302C6CD-FFDE-47AF-9710-84CC2062FAA5">
+            <kie:width>50</kie:width>
+            <kie:width>247</kie:width>
+            <kie:width>1232</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_5551E4A1-704E-48E6-A1D4-56AEBD390960">
+            <kie:width>1232</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_FA494FCD-FBD2-4831-935D-3110362AF0FA">
+            <kie:width>1232</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_A8400DE2-DD14-48B9-9C5B-68E1B0BA5322">
+            <kie:width>50</kie:width>
+            <kie:width>120</kie:width>
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_F3E4BEA1-B535-4842-A119-1A7836AA8765">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_58F97B94-9794-4F27-AE93-ED95B7406D8E">
+            <kie:width>190</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_945A552E-9200-4C4C-8849-E12E64DB2FEF">
+            <kie:width>50</kie:width>
+            <kie:width>120</kie:width>
+            <kie:width>402</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_475CB053-102C-4A2E-AA5F-D6F7E6DBED0B">
+            <kie:width>402</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_B9119A9C-DC71-4FF7-945C-5511C0A83469">
+            <kie:width>402</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_E4A76B7D-6171-44A7-85BF-A98FAFA93662" dmnElementRef="_E4A76B7D-6171-44A7-85BF-A98FAFA93662" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="525" y="416" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_4F177D9B-9086-445E-81FB-7F8442ECEBDE" dmnElementRef="_4F177D9B-9086-445E-81FB-7F8442ECEBDE" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="526" y="285" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_DDC59774-BF16-4395-A2F9-8DD7AC62C58C" dmnElementRef="_DDC59774-BF16-4395-A2F9-8DD7AC62C58C" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="526" y="10" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_8A401D94-10C7-4E6C-8C03-64269D1980DE" dmnElementRef="_8A401D94-10C7-4E6C-8C03-64269D1980DE" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="525" y="141" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_106654A4-3A4E-4EAF-899A-6B42BB541AA9-AUTO-TARGET" dmnElementRef="_106654A4-3A4E-4EAF-899A-6B42BB541AA9">
+        <di:waypoint x="575" y="441"/>
+        <di:waypoint x="576" y="335"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_E9A2E7A4-A167-4D92-99BB-B89F36633FAF" dmnElementRef="_E9A2E7A4-A167-4D92-99BB-B89F36633FAF">
+        <di:waypoint x="575" y="166"/>
+        <di:waypoint x="576" y="60"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_90B92188-19EA-41FD-934C-81557847B800" dmnElementRef="_90B92188-19EA-41FD-934C-81557847B800">
+        <di:waypoint x="576" y="310"/>
+        <di:waypoint x="575" y="191"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>

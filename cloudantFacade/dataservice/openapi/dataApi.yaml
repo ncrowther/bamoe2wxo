@@ -100,13 +100,13 @@ components:
         offenceType:
           type: string          
         speedLimit:
-          type: integer    
+          type: number    
         actualSpeed:
-          type: integer              
+          type: number              
         fine:
-          type: integer   
+          type: number   
         points:
-          type: integer                       
+          type: number                       
 
   securitySchemes:
     basic_auth:

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'primereact/card';
 
-const TotalFines = ({ data, driverId, disqualified }) => {
+const TotalFines = ({ data, driverId }) => {
 
   console.log("driverId: " + driverId)
 
@@ -24,10 +24,8 @@ const TotalFines = ({ data, driverId, disqualified }) => {
     return counter;
   }, 0);
 
-
   console.log("totalPoints: " + totalPoints)
   console.log("totalFine: " + totalFine)
-  console.log("disqualified: " + disqualified)
 
   const content = <>
     <p className="m-0">
@@ -37,7 +35,9 @@ const TotalFines = ({ data, driverId, disqualified }) => {
     </p>
   </>;
 
-  if (disqualified === 'true') {
+  const DQ_POINTS = 12;
+
+  if (totalPoints >= DQ_POINTS) {
     return (
       <Card title="DISQUALIFIED" className="md:w-25rem" style={{ color: 'red' }}>
         {content}

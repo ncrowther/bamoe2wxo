@@ -9,8 +9,10 @@ import queryString from 'query-string';
 import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
 
 const Fine = () => {
+
+  // Get params from URL
   const queryStringParams = queryString.parse(window.location.search);
-  console.log("***queryStringParams.id: " + queryStringParams.id)
+  console.log("***queryStringParams.id: " + queryStringParams.driverId)
 
   const { data, isLoading, error } = useQuery({
     queryFn: () =>
@@ -52,7 +54,7 @@ const Fine = () => {
 
         <br />
         <Panel header="" class="p-panel-title ml-2 text-primary">
-          <TotalFines data={data} driverId={queryStringParams.driverId} disqualified={queryStringParams.disqualified} />
+          <TotalFines data={data} driverId={queryStringParams.driverId} />
         </Panel>
 
       </Divider>
