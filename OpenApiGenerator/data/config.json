@@ -5,7 +5,7 @@
     "decisionId": "[YOUR_INITIALS]TrafficViolation",
     "restEndpoint": [{
       "localUrl": "http://localhost:8123",
-      "remoteUrl": "https://p05122wf-8123.uks1.devtunnels.ms/"
+      "remoteUrl": "https://speeding-decision-service-dm-kogito.test4-403315c8b53cfaaf40d7fd4ee4d91267-0000.eu-gb.containers.appdomain.cloud/"
     }]
   }]
 }
