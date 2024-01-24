@@ -1,4 +1,4 @@
-# Litigation Finance Demo
+# Cloudant Facade for WXO
 
 This package creates a datafacade into a Cloudant database.  
 The facade is exposed as an OpenAPI where it can be ingested by WatsonxOrchestrate. 
@@ -37,7 +37,7 @@ See:
 
  * Create a code engine project (eg name sample)
 
- * Create a code engine configmap configuration containing Cloudant credentials: CLOUDANT_APIKEY=XXX, CLOUDANT_URL=XXX, DBNAME=katchdb
+ * Create a code engine configmap configuration containing Cloudant credentials: CLOUDANT_APIKEY=XXX, CLOUDANT_URL=XXX, DBNAME=wxodb
 
  * Assign the config map to the Code Engine project
 
@@ -71,16 +71,10 @@ See:
 
 10.	Open the URL using the IBM Cloud Code Engine route for the refunds application
 
-## Learn More about React
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
 
 ## License
 
-Copyright (c) 2019 IBM Corporation
+Copyright (c) 2024 IBM Corporation
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
