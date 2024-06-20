@@ -103,7 +103,7 @@ public class CreateOpenApi {
 
 		ApiContent apiContent = new ApiContent();
 
-		String schema = KogitoApi.getDecisionOpenApiSchema(apiConfig.getLocalUrl());
+		String schema = KogitoApi.getDecisionOpenApiSchema(apiConfig);
 
 		apiContent.setSchema(schema);
 

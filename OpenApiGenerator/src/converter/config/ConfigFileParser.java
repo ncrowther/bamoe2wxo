@@ -44,6 +44,10 @@ public class ConfigFileParser implements IConfigParser {
 					getDecisionId(apiConfig, property);
 				}	
 				
+				if (property.has("decisionFolder")) {
+					getDecisionFolder(apiConfig, property);
+				}					
+				
 				if (property.has("processId")) {
 					getProcessId(apiConfig, property);
 				}	
@@ -54,11 +58,18 @@ public class ConfigFileParser implements IConfigParser {
 			}
 		}
 	}
+	
 	private void getDecisionId(ApiConfig conf, JSONObject inputObj) {
 		String decisionId = inputObj.getString("decisionId");	
 		System.out.println("DecisionId:" + decisionId);
 		apiConfig.setDecisionId(decisionId);
 	}	
+	
+	private void getDecisionFolder(ApiConfig conf, JSONObject inputObj) {
+		String decisionFolder = inputObj.getString("decisionFolder");	
+		System.out.println("DecisionFolder:" + decisionFolder);
+		apiConfig.setDecisionFolder(decisionFolder);
+	}		
 	
 	private void getProcessId(ApiConfig conf, JSONObject inputObj) {
 		String processId = inputObj.getString("processId");	

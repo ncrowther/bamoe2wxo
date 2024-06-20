@@ -21,9 +21,12 @@ public class OpenApiWriter {
 		String baseUrl = apiConfig.getRemoteUrl();
 		
 		String schema = apiContent.getSchema();
-		schema = schema.replaceFirst("definitions", "schemas");
-		schema = schema.replaceAll("definitions", "components/schemas");
-		schema = schema.substring(0, schema.length() - 2); // remove last two braces
+		
+		if (schema.length() > 0) {
+			schema = schema.replaceFirst("definitions", "schemas");
+			schema = schema.replaceAll("definitions", "components/schemas");
+			schema = schema.substring(0, schema.length() - 2); // remove last two braces
+		}
 		
 		StringBuilder strBuilder = new StringBuilder();		
 		strBuilder.append("{\r\n"

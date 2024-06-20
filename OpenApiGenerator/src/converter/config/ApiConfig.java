@@ -2,10 +2,17 @@ package converter.config;
 
 public class ApiConfig {
 	String decisionId;
+	String decisionFolder;
 	String processId;
 	String localUrl;
 	String remoteUrl;
 	
+	public String getDecisionFolder() {
+		return decisionFolder;
+	}
+	public void setDecisionFolder(String decisionFolder) {
+		this.decisionFolder = decisionFolder;
+	}
 	public String getProcessId() {
 		return processId;
 	}

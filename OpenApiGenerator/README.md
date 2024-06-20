@@ -2,11 +2,12 @@
 
 ## Description
 
-This utility generates a WatsonxOrchestrate OpenAPI spec for BAMOE
+This utility generates a WatsonxOrchestrate OpenAPI spec for BAMOE V9.1 or later
 
 ## Prerequisites
 
 - Java 1.8 or later
+- BAMOE V9.1 or later
 
 ## Usage
 
@@ -15,7 +16,10 @@ Download this repo and extract to a folder of your choice.
 - Open a VSC project with a DMN decision service and run in dev mode.
 - Using the built in VSC Port tab, expose the kogito service port (usually 8080).  Click on Visibility and set it to Public
 - Open the project in this directory with eclipse IDE.
-- Edit ./data/config.json file and set the decisionId to the name of your decision service (not the filename).  Also set both internal and external URLs to the URL of your running Kogito service.
+- Edit ./data/config.json file
+- Set the decisionId to the name of your decision service (not the filename).  
+- Set the name of the dmn folder (if viewing from VSC, this is the filename without the extension)
+- If running locally, set the internal URL to your localhost instance, and external URLs to the URL of your running Kogito service. If running on Openshift, this is the same URL for both.
 - Save the config.json file
 - Generate the OpenAPI file by running the 'run' target in ./build.xml.  Alternatively execute 'run.bat' found in the top level folder.  
 - Once finished, you should see the generated openAPI spec for the service in the ./generated folder

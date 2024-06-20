@@ -22,6 +22,8 @@ import javax.net.ssl.X509TrustManager;
 
 import org.apache.commons.codec.binary.Base64;
 
+import converter.config.ApiConfig;
+
 public class KogitoApi {
 
 	public static boolean debug = true;
@@ -65,10 +67,12 @@ public class KogitoApi {
 		HttpsURLConnection.setDefaultHostnameVerifier(validHosts);
 	}
 
-	public static String getDecisionOpenApiSchema(String localUrl) throws KogitoApiException {
+	public static String getDecisionOpenApiSchema(ApiConfig apiConfig) throws KogitoApiException {
 
 		String schema = "";
-		String getOpenApiSchemaURL = localUrl + "/dmnDefinitions.json";
+		String decisionUrl = apiConfig.getLocalUrl();
+		String decisionFolder = apiConfig.getDecisionFolder();
+		String getOpenApiSchemaURL = decisionUrl + "/" + decisionFolder + ".json";
 
 		HashMap<String, String> headerMap = new HashMap<String, String>();
 
@@ -179,17 +183,6 @@ public class KogitoApi {
 
 	public static void main(String args[]) {
 
-		String baseURL = "http://localhost:8080";
-
-		try {
-
-			String result = getDecisionOpenApiSchema(baseURL);
-
-		    System.out.println("Result: " + result);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 	}
 }
