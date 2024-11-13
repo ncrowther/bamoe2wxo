@@ -2,11 +2,11 @@
   "name": "IBM watsonx Orchestrate OpenApi generator for BAMOE V9",
   "properties": [{
     "processId": "",
-    "decisionId": "CreditStatus",
-    "decisionFolder": "UpgradeStatus",
+    "decisionId": "loan_pre_qualification",
+    "decisionFolder": "LoanQualification",
     "restEndpoint": [{
-      "localUrl": "https://dev-deployment-t4mvomb537.apps.j4fxfomh.eastus.aroapp.io",
-      "remoteUrl": "https://dev-deployment-t4mvomb537.apps.j4fxfomh.eastus.aroapp.io/"
+      "localUrl": "http://localhost:8080",
+      "remoteUrl": "https://dev-deployment-jja6uxx974.apps.tzrosa-86p62ddz.nnlg.p1.openshiftapps.com"
     }]
   }]
 }

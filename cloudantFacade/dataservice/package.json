@@ -11,6 +11,7 @@
     "@ibm-cloud/cloudant": "^0.7.2",
     "cfenv": "^1.0.3",
     "cloudant": "^1.10.0-NOTICE",
+    "CloudantDataservice": "file:",
     "express": "^4.13.4",
     "express-session": "^1.15.1",
     "https": "^1.0.0",

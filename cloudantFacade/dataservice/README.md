@@ -17,7 +17,7 @@ See:
 ### Run on local host
 
  Edit setenv.bat to cloudant credentials (see prereqs)
- Open DOS prompt (NOT powershell).  Enter:
+ Open DOS prompt (***NOT powershell***).  Enter:
 
  ```sh
    setenv.bat
