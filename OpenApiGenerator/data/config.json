@@ -1,12 +1,16 @@
 {
   "name": "IBM watsonx Orchestrate OpenApi generator for BAMOE V9",
-  "properties": [{
-    "processId": "",
-    "decisionId": "loan_pre_qualification",
-    "decisionFolder": "LoanQualification",
-    "restEndpoint": [{
-      "localUrl": "http://localhost:8080",
-      "remoteUrl": "https://dev-deployment-jja6uxx974.apps.tzrosa-86p62ddz.nnlg.p1.openshiftapps.com"
-    }]
-  }]
+  "properties": [
+    {
+      "processId": "",
+      "decisionId": "NTCTrafficViolation",
+      "decisionFolder": "NTCTrafficViolation",
+      "restEndpoint": [
+        {
+          "localUrl": "http://localhost:8123",
+          "remoteUrl": "https://lz4fm5hn-8123.uks1.devtunnels.ms"
+        }
+      ]
+    }
+  ]
 }

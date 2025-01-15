@@ -13,6 +13,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
+
+import org.json.JSONObject;
+import org.json.XML;
+import org.json.JSONException;
+
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -72,7 +77,7 @@ public class KogitoApi {
 		String schema = "";
 		String decisionUrl = apiConfig.getLocalUrl();
 		String decisionFolder = apiConfig.getDecisionFolder();
-		String getOpenApiSchemaURL = decisionUrl + "/" + decisionFolder + ".json";
+		String getOpenApiSchemaURL = decisionUrl + "/dmnDefinitions.json";
 
 		HashMap<String, String> headerMap = new HashMap<String, String>();
 

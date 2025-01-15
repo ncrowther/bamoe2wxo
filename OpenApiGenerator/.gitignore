@@ -1,5 +1,6 @@
 bin/
 bpmn/
+generated/
 *.wad
 ~$aApiGuide.odt
 ~WRL0005.tmp
