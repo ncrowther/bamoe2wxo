@@ -2,7 +2,7 @@
 
 ## Description
 
-A simple DMN service to evaluate a traffic violation.
+A simple DMN service to upsell products
 
 Demonstrates DMN on Kogito capabilities, including REST interface code generation.
 

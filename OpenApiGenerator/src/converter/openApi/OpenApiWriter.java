@@ -33,7 +33,7 @@ public class OpenApiWriter {
 				+ "  \"openapi\": \"3.0.3\",\r\n"
 				+ "  \"info\": {\r\n"
 				+ "    \"title\": \"Generated " + decisionId + " IBM BAMOE OpenAPI 3.0\",\r\n"
-				+ "    \"description\": \"This is a sample decision Server based on the IBM 3.0 specification\",\r\n"
+				+ "    \"description\": \"This is a BAMOE decision service generarated from an asset created by Nigel T. Crowther\",\r\n"
 				+ "    \"termsOfService\": \"http://IBM.io/terms/\",\r\n"
 				+ "    \"contact\": {\r\n"
 				+ "      \"email\": \"ncrowther@uk.ibm.com\"\r\n"

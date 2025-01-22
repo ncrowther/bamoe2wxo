@@ -3,8 +3,8 @@
   "properties": [
     {
       "processId": "",
-      "decisionId": "NTCTrafficViolation",
-      "decisionFolder": "NTCTrafficViolation",
+      "decisionId": "NTCUpsell",
+      "decisionFolder": "NTCUpsell",
       "restEndpoint": [
         {
           "localUrl": "http://localhost:8123",
