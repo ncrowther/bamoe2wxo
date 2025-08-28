@@ -1,290 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://github.com/kiegroup/drools/kie-dmn/_A4BCA8B8-CF08-433F-93B2-A2598F19ECFF" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_1C792953-80DB-4B32-99EB-25FBE32BAF9E" name="NTCUpsell" expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://github.com/kiegroup/drools/kie-dmn/_A4BCA8B8-CF08-433F-93B2-A2598F19ECFF">
   <dmn:extensionElements/>
-  <dmn:itemDefinition id="_40731093-0642-4588-9183-1660FC55053B" name="UpsellResponse" isCollection="false">
-    <dmn:itemComponent id="_DDD10D6E-BD38-4C79-9E2F-8155E3A4B438" name="maxTokens" isCollection="false">
-      <dmn:typeRef>number</dmn:typeRef>
-    </dmn:itemComponent>
-    <dmn:itemComponent id="_229F80E4-2892-494C-B70D-683ABF2345F6" name="minTokens" isCollection="false">
-      <dmn:typeRef>number</dmn:typeRef>
-    </dmn:itemComponent>
-    <dmn:itemComponent id="_2E9CEE0B-5F5B-4B52-8447-233307445BC4" name="prompt" isCollection="false">
-      <dmn:typeRef>string</dmn:typeRef>
-    </dmn:itemComponent>
-    <dmn:itemComponent id="_013B4388-24B2-4519-B63E-DB79DF00B608" name="product" isCollection="false">
-      <dmn:typeRef>string</dmn:typeRef>
-    </dmn:itemComponent>
-  </dmn:itemDefinition>
-  <dmn:itemDefinition id="_2D4F30EE-21A6-4A78-A524-A5C238D433AE" name="Customer" isCollection="false">
-    <dmn:itemComponent id="_B9F70BC7-1995-4F51-B949-1AB65538B405" name="age" isCollection="false">
-      <dmn:typeRef>number</dmn:typeRef>
-    </dmn:itemComponent>
-    <dmn:itemComponent id="_6178B2BA-A162-4F7C-833B-93EC43C7DEB2" name="name" isCollection="false">
-      <dmn:typeRef>string</dmn:typeRef>
-    </dmn:itemComponent>
-  </dmn:itemDefinition>
-  <dmn:decisionService id="_AE7FCAD8-834F-400A-8221-4148303E9A34" name="Upsell">
+  <dmn:inputData id="_1929CBD5-40E0-442D-B909-49CEDE0101DC" name="lifeEvent">
     <dmn:extensionElements/>
-    <dmn:variable id="_FD1E9199-A5F2-432E-866A-9C7F9B68F021" name="Upsell"/>
-    <dmn:outputDecision href="#_15C3512A-BD7E-4C76-B6AC-A41E1EF6E6AA"/>
-    <dmn:encapsulatedDecision href="#_4055D956-1C47-479C-B3F4-BAEB61F1C929"/>
-    <dmn:encapsulatedDecision href="#_7045C4F3-CC9E-4129-82B5-764BEEA6DFAC"/>
-    <dmn:inputData href="#_1929CBD5-40E0-442D-B909-49CEDE0101DC"/>
-    <dmn:inputData href="#_1F9350D7-146D-46F1-85D8-15B5B68AF22A"/>
-  </dmn:decisionService>
-  <dmn:inputData id="_1929CBD5-40E0-442D-B909-49CEDE0101DC" name="change">
-    <dmn:extensionElements/>
-    <dmn:variable id="_C16CF9B1-5FAB-48A0-95E0-5FCD661E0406" name="change" typeRef="string"/>
+    <dmn:variable id="_C16CF9B1-5FAB-48A0-95E0-5FCD661E0406" name="lifeEvent" typeRef="string"/>
   </dmn:inputData>
-  <dmn:decision id="_4055D956-1C47-479C-B3F4-BAEB61F1C929" name="product">
+  <dmn:decision id="_3A6F5F72-B8A1-478D-AC97-B99F62109FAA" name="daysOff">
     <dmn:extensionElements/>
-    <dmn:variable id="_8C1EAC83-F251-4D94-8A9E-B03ACF6849CD" name="product" typeRef="string"/>
-    <dmn:informationRequirement id="_800A3BBB-90A3-4D9D-BA5E-A311DED0134F">
+    <dmn:variable id="_0962715E-29D1-4DB5-B7C9-20F8A1B9FD7D" name="daysOff" typeRef="number"/>
+    <dmn:informationRequirement id="_25F51C54-5914-447E-9020-6F30F00C720A">
       <dmn:requiredInput href="#_1929CBD5-40E0-442D-B909-49CEDE0101DC"/>
     </dmn:informationRequirement>
-    <dmn:informationRequirement id="_B0944F65-732C-47D7-8C28-3644024C52BB">
-      <dmn:requiredInput href="#_1F9350D7-146D-46F1-85D8-15B5B68AF22A"/>
+    <dmn:informationRequirement id="_FA023A1D-1CFE-47A7-AAA9-26798D4462E9">
+      <dmn:requiredInput href="#_F6855CB1-BAC8-4AB3-9EAB-84F756E73BB5"/>
     </dmn:informationRequirement>
-    <dmn:decisionTable id="_C8F7F579-E06C-4A2F-8485-65FAFAC3FE6A" hitPolicy="FIRST" preferredOrientation="Rule-as-Row">
-      <dmn:input id="_D5319F80-1C59-4736-AF2D-D29DE6B7E76D">
-        <dmn:inputExpression id="_17BBF0B4-F8FE-4614-BE73-B3E74E5CDD97" typeRef="string">
-          <dmn:text>change</dmn:text>
-        </dmn:inputExpression>
-      </dmn:input>
-      <dmn:input id="_6130F96A-426E-46F4-9664-5D0A3640D38D">
-        <dmn:inputExpression id="_266F946E-65B6-4F87-A130-5E46721EF655" typeRef="number">
-          <dmn:text>customer.age</dmn:text>
-        </dmn:inputExpression>
-      </dmn:input>
-      <dmn:output id="_4437ADE6-FAAA-4B9B-8A34-49462DA0F9AD"/>
-      <dmn:annotation name="Annotations-3"/>
-      <dmn:rule id="_424A80AE-916F-4451-9B6B-71557F7EC65A">
-        <dmn:inputEntry id="_246AAB08-A945-4599-9220-7C24B6716FDD">
-          <dmn:text>"LIFE INSURANCE"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:inputEntry id="_9DE1EE1F-E08E-4FFF-8705-2D1BFE302125">
-          <dmn:text>[18..50]</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_E1DDB02C-598D-4291-A469-F05721137D21">
-          <dmn:text>"Lifeplan Insurance"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_EE62AE75-CA2A-4430-8396-EB73F2B48BBB">
-        <dmn:inputEntry id="_903A285C-A6CD-40CF-BF26-CF8195F8E97A">
-          <dmn:text>"LIFE INSURANCE"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:inputEntry id="_FC47B7FB-888F-4806-8ADC-8162E3A0A215">
-          <dmn:text>[51..60]</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_BDEBE7D8-85A3-4C16-ACD8-F47FB1C00993">
-          <dmn:text>"Silver Insurance"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_C651DCEC-8E03-420B-B405-8F47318DEF5E">
-        <dmn:inputEntry id="_7FB45601-C39F-4DBA-882A-EAE88E8637DC">
-          <dmn:text>"MORTGAGE"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:inputEntry id="_DC06635B-9882-4A2D-8435-25DD7B4402D2">
-          <dmn:text>[18..50]</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_E0449490-DC58-4547-8810-26BCDB153F26">
-          <dmn:text>"25 Year Mortgage"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_A8F96F53-A120-422F-B215-F8737FE4F15B">
-        <dmn:inputEntry id="_3364A549-27CA-4799-9CEB-940D4EF969B6">
-          <dmn:text>"MORTGAGE"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:inputEntry id="_D15F2D33-3E71-427C-B80B-BEFF6FB1DBAB">
-          <dmn:text>[51..60]</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_F5BE237F-9676-41D8-AC65-B6DE96EFE985">
-          <dmn:text>"10 Year Mortgage"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_9A4185F5-8308-47F6-A0FE-BFBED63A0849">
-        <dmn:inputEntry id="_E84A4E80-4431-4637-A5A5-0992A6904F70">
-          <dmn:text>"EQUITY RELEASE"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:inputEntry id="_87DB7B7A-5863-49DD-A944-D9D3E66AF39F">
-          <dmn:text>&gt; 60</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_23F74267-963D-413B-922D-EA662B6B8564">
-          <dmn:text>"Senior Equity Release"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_E3E35F76-CE17-4097-978B-0C89788F0B49">
-        <dmn:inputEntry id="_59A4A703-5F00-48E5-8942-BE5869F2EADE">
-          <dmn:text>"CARE"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:inputEntry id="_CED211B4-C31F-4AFC-8ECD-E051E92CD0E8">
-          <dmn:text>&gt; 50</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_CDC76F07-323B-4C1D-806F-51304E48903D">
-          <dmn:text>"Premium Care Package"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_12122DF3-CADC-4BF3-81FB-0B798EC294D3">
-        <dmn:inputEntry id="_798229AA-7A52-4A47-B603-82B5751DAB54">
-          <dmn:text>"RETIREMENT"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:inputEntry id="_83590D7F-BD47-4F6D-938A-EC3D08A433CF">
-          <dmn:text>&gt; 40</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_447692EC-8FC3-4026-8B32-AA000A049483">
-          <dmn:text>"Retirement Plan"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_9512BEE2-461A-43F2-9794-50DD80B96E91">
-        <dmn:inputEntry id="_FA2F4AB4-F90E-4B70-AE43-F195CBDAE9C6">
-          <dmn:text>"PROPERTY SALE"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:inputEntry id="_BE1037F6-2BBB-43D0-934C-F68E2326CE9E">
-          <dmn:text>-</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_A786313A-EB8C-441C-B67F-7DC766AA1B57">
-          <dmn:text>"Property Sale"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-    </dmn:decisionTable>
-  </dmn:decision>
-  <dmn:inputData id="_1F9350D7-146D-46F1-85D8-15B5B68AF22A" name="customer">
-    <dmn:extensionElements/>
-    <dmn:variable id="_A80F16DF-0DB4-43A2-B041-32900B1A3F3D" name="customer" typeRef="Customer"/>
-  </dmn:inputData>
-  <dmn:decision id="_7045C4F3-CC9E-4129-82B5-764BEEA6DFAC" name="upsell">
-    <dmn:extensionElements/>
-    <dmn:variable id="_9C7D4546-A285-4A40-B0BF-59B762E526BA" name="upsell" typeRef="string"/>
-    <dmn:informationRequirement id="_56AE2944-8708-4CD9-95EB-E6B9BF7040E6">
-      <dmn:requiredDecision href="#_4055D956-1C47-479C-B3F4-BAEB61F1C929"/>
-    </dmn:informationRequirement>
-    <dmn:decisionTable id="_D62B2A85-CAD6-40AC-B6A8-DBF512443B6E" hitPolicy="FIRST" preferredOrientation="Rule-as-Row">
-      <dmn:input id="_9AC5C76E-B797-40FA-B646-3091F74D19E5">
+    <dmn:decisionTable id="_93511A5E-C214-415A-8087-11428B89B0BB" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_C0D4CA9C-8CD6-41DB-939D-58587CA5226F">
         <dmn:inputExpression typeRef="string">
-          <dmn:text>product</dmn:text>
+          <dmn:text>lifeEvent</dmn:text>
         </dmn:inputExpression>
       </dmn:input>
-      <dmn:output id="_7185CFAB-C531-4BC0-A970-69F04124E617"/>
+      <dmn:input id="_90FC9231-1707-4339-A4F5-6EC1A7627024">
+        <dmn:inputExpression typeRef="string">
+          <dmn:text>gender</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_1AB0BF36-B928-4516-A6C2-92585B0B4973"/>
       <dmn:annotation name="annotation-1"/>
-      <dmn:rule id="_E76E9ABC-2FB9-4144-9930-EB3935656B50">
-        <dmn:inputEntry id="_3776E200-0A85-48DA-A3D4-47FB8B9BEBE0">
-          <dmn:text>"Lifeplan Insurance"</dmn:text>
+      <dmn:rule id="_2EBD8443-848C-4F35-BC1F-D5A16AE64817">
+        <dmn:inputEntry id="_C8B1537F-E3D0-4E26-9FF4-71D554664B87">
+          <dmn:text>"marriage"</dmn:text>
         </dmn:inputEntry>
-        <dmn:outputEntry id="_42513BA0-A9FF-4C19-9DDB-F5356C8B0FAD">
-          <dmn:text> "Write a marketing email to the client to tell them that you offer life insurance"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_359CACA5-F308-4805-8449-69AC0BD28861">
-        <dmn:inputEntry id="_3431B46A-45F6-4A03-A2AA-2C16C5CB035F">
-          <dmn:text>"Silver Insurance"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_B9BB5962-28DC-45EF-B3C5-2337F557DF26">
-          <dmn:text> "Write a marketing email to the client to tell them that you offer life insurance for seniors"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_4906C4FD-B794-4519-9FC3-3AC16DA736D4">
-        <dmn:inputEntry id="_6D7963D6-FD2B-4594-9909-A92025EA2255">
-          <dmn:text>"25 Year Mortgage"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_8FD7CF4E-C1D8-4406-8018-CD1EA1E1186E">
-          <dmn:text> "Write a marketing email to the client to tell them that you offer 25 year mortgages"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_8024A580-1A51-4D37-A46F-C65E7D60FA60">
-        <dmn:inputEntry id="_1FB4527A-81A0-4791-9113-A05099C5E52B">
-          <dmn:text>"10 Year Mortgage"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_FDC38D13-072A-421C-BB56-D8DCDC4800AF">
-          <dmn:text> "Write a marketing email to the client to tell them that you offer 10 year mortgages"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_C6DC6CAD-E962-4344-B518-C07E0CF37391">
-        <dmn:inputEntry id="_E4E89B32-3E54-4D51-92E7-5C9CE8AA7482">
-          <dmn:text>"Senior Equity Release"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_4882967F-CCE0-4D42-9DA7-6E03EBB57C88">
-          <dmn:text> "Write a marketing email to the client to tell them that you offer equity release for seniors"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_B704111D-075B-4577-8985-6314564BE2E7">
-        <dmn:inputEntry id="_11883F72-5B69-473E-A38F-0F1D169F2500">
-          <dmn:text>"Premium Care Package"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_BD661E89-42B4-47DB-B2F7-575E8282BB8B">
-          <dmn:text>"Write a marketing email to the client to tell them that you care packages for seniors"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_782CDD50-8310-4257-B5E8-D4449B2872E1">
-        <dmn:inputEntry id="_DB821C81-009A-4DCF-84F9-028705695C4B">
-          <dmn:text>"Retirement Plan"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_CFC59BAE-F76D-4D8A-ABE6-F53AED72CB14">
-          <dmn:text>"Write a marketing email to the client to tell them that we offer retirement planning"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_0263B55F-C35E-4D60-8351-52C8676E70EF">
-        <dmn:inputEntry id="_B7CA1326-E934-4623-90DA-68F9ABEB7A85">
-          <dmn:text>"Property Sale"</dmn:text>
-        </dmn:inputEntry>
-        <dmn:outputEntry id="_4F74F754-5AA8-4CC5-BC9E-88EB9AA56FE6">
-          <dmn:text>"Write a marketing email to the client to tell them that we offer premium property sales and our commision is lower than our competitors"</dmn:text>
-        </dmn:outputEntry>
-        <dmn:annotationEntry>
-          <dmn:text/>
-        </dmn:annotationEntry>
-      </dmn:rule>
-      <dmn:rule id="_1EAFDD46-6F62-430B-B50F-377DEA713F3E">
-        <dmn:inputEntry id="_50A9FFAE-E9FE-436C-965C-D286E39C350B">
+        <dmn:inputEntry id="_3B1B1AE0-00CE-4500-BB59-7999B430566D">
           <dmn:text>-</dmn:text>
         </dmn:inputEntry>
-        <dmn:outputEntry id="_4054AC61-2530-4F36-97DE-252EB3CF3935">
-          <dmn:text>"Advise the customer that we provide a range of independant financial advice."
-</dmn:text>
+        <dmn:outputEntry id="_1111CD79-B282-4E5A-ACE2-0EC7A7840EF6">
+          <dmn:text>1</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_D0450261-DCE2-4D81-A6CE-765BE47BE3AC">
+        <dmn:inputEntry id="_2553B38C-A88F-4B3E-88E1-CAD2567E72FE">
+          <dmn:text>"birth"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_6A62BF9E-825C-4CC2-9AAC-CC95557B652D">
+          <dmn:text>"male"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_3E70B9D6-2CF4-4B9A-8DA1-855D37734214">
+          <dmn:text>5</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_C177ECE0-6721-4BC6-8581-BC54356D8F84">
+        <dmn:inputEntry id="_9962D91F-AE51-4035-A138-FE23E3F6BABC">
+          <dmn:text>"birth"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_F0EC6A1B-5AAE-4D58-86ED-C1414570DF05">
+          <dmn:text>"female"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_91D25672-BDAB-464A-9805-E51F74238B9F">
+          <dmn:text>15</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_0C599A6C-EBC6-4A6A-A898-414C482F5C4F">
+        <dmn:inputEntry id="_DDC22E5A-22F1-4D78-90F6-11958100902F">
+          <dmn:text>"bereavement"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_A81CEB2B-9DBC-41B9-A26E-F2EDD89FA99C">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_2CC2EC08-56AB-4CE9-9449-B1D0D4D7C520">
+          <dmn:text>3</dmn:text>
         </dmn:outputEntry>
         <dmn:annotationEntry>
           <dmn:text/>
@@ -292,165 +85,57 @@
       </dmn:rule>
     </dmn:decisionTable>
   </dmn:decision>
-  <dmn:decision id="_15C3512A-BD7E-4C76-B6AC-A41E1EF6E6AA" name="response">
+  <dmn:inputData id="_F6855CB1-BAC8-4AB3-9EAB-84F756E73BB5" name="gender">
     <dmn:extensionElements/>
-    <dmn:variable id="_5D74CD0C-2AD3-4ECA-8123-B00326A995C6" name="response" typeRef="UpsellResponse"/>
-    <dmn:informationRequirement id="_B833D4C1-AF64-4CC5-9C1C-AC88A86559D3">
-      <dmn:requiredDecision href="#_7045C4F3-CC9E-4129-82B5-764BEEA6DFAC"/>
-    </dmn:informationRequirement>
-    <dmn:informationRequirement id="_91622A4D-1DDA-47DB-AD09-F2D7A9161659">
-      <dmn:requiredInput href="#_1F9350D7-146D-46F1-85D8-15B5B68AF22A"/>
-    </dmn:informationRequirement>
-    <dmn:context id="_E3AA2CAC-9583-4C72-887C-77A809A647B6">
-      <dmn:contextEntry>
-        <dmn:variable id="_8E149964-38C3-4056-B5D2-6B1CFBCFDAB3" name="upsellResponse" typeRef="UpsellResponse"/>
-        <dmn:context id="_9CF270DC-04B4-43ED-9F9D-E8382BDDD777">
-          <dmn:contextEntry>
-            <dmn:variable id="_199AF2C7-531D-46E9-BA02-08CAC60F64D5" name="minTokens" typeRef="UpsellResponse"/>
-            <dmn:literalExpression id="_7286E411-4E90-41DF-B1E6-E415CBBDE460">
-              <dmn:text>400</dmn:text>
-            </dmn:literalExpression>
-          </dmn:contextEntry>
-          <dmn:contextEntry>
-            <dmn:variable id="_5125B367-4750-4B6A-B615-3D8B3CA5993F" name="maxTokens" typeRef="UpsellResponse"/>
-            <dmn:literalExpression id="_1A979D47-9B5D-49A7-A993-1D415DC09410">
-              <dmn:text>500</dmn:text>
-            </dmn:literalExpression>
-          </dmn:contextEntry>
-          <dmn:contextEntry>
-            <dmn:variable id="_A6A30B2B-1034-4B43-9932-5DFD1C5F874F" name="prompt" typeRef="UpsellResponse"/>
-            <dmn:literalExpression id="_256A7722-7FD5-4249-97E9-0D4940CD8872">
-              <dmn:text>"You are an financial advisor and you have a client named " + customer.name + ". Write a marketing email to the client. " + upsell</dmn:text>
-            </dmn:literalExpression>
-          </dmn:contextEntry>
-        </dmn:context>
-      </dmn:contextEntry>
-      <dmn:contextEntry>
-        <dmn:literalExpression id="_CB49D996-8296-4986-86EC-BAE65B084331">
-          <dmn:text>upsellResponse</dmn:text>
-        </dmn:literalExpression>
-      </dmn:contextEntry>
-    </dmn:context>
-  </dmn:decision>
+    <dmn:variable id="_9124C182-4233-4E08-89D1-70D6DCA75FA5" name="gender" typeRef="string"/>
+  </dmn:inputData>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram id="_206AA65E-84C4-41D2-8FD2-B94510A06090" name="DRG">
       <di:extension>
         <kie:ComponentsWidthsExtension>
-          <kie:ComponentWidths dmnElementRef="_C8F7F579-E06C-4A2F-8485-65FAFAC3FE6A">
+          <kie:ComponentWidths dmnElementRef="_93511A5E-C214-415A-8087-11428B89B0BB">
             <kie:width>50</kie:width>
-            <kie:width>329</kie:width>
-            <kie:width>236</kie:width>
-            <kie:width>297</kie:width>
-            <kie:width>240</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_D62B2A85-CAD6-40AC-B6A8-DBF512443B6E">
-            <kie:width>50</kie:width>
-            <kie:width>240</kie:width>
-            <kie:width>796</kie:width>
             <kie:width>100</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_E3AA2CAC-9583-4C72-887C-77A809A647B6">
-            <kie:width>50</kie:width>
-            <kie:width>120</kie:width>
-            <kie:width>962</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_9CF270DC-04B4-43ED-9F9D-E8382BDDD777">
-            <kie:width>50</kie:width>
-            <kie:width>120</kie:width>
-            <kie:width>772</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_7286E411-4E90-41DF-B1E6-E415CBBDE460">
-            <kie:width>772</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_1A979D47-9B5D-49A7-A993-1D415DC09410">
-            <kie:width>772</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_256A7722-7FD5-4249-97E9-0D4940CD8872">
-            <kie:width>772</kie:width>
-          </kie:ComponentWidths>
-          <kie:ComponentWidths dmnElementRef="_CB49D996-8296-4986-86EC-BAE65B084331">
-            <kie:width>962</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
           </kie:ComponentWidths>
         </kie:ComponentsWidthsExtension>
       </di:extension>
-      <dmndi:DMNShape id="dmnshape-drg-_AE7FCAD8-834F-400A-8221-4148303E9A34" dmnElementRef="_AE7FCAD8-834F-400A-8221-4148303E9A34" isCollapsed="false">
-        <dmndi:DMNStyle>
-          <dmndi:FillColor red="255" green="255" blue="255"/>
-          <dmndi:StrokeColor red="0" green="0" blue="0"/>
-          <dmndi:FontColor red="0" green="0" blue="0"/>
-        </dmndi:DMNStyle>
-        <dc:Bounds x="73" y="127" width="434" height="364"/>
-        <dmndi:DMNLabel/>
-        <dmndi:DMNDecisionServiceDividerLine>
-          <di:waypoint x="73" y="227"/>
-          <di:waypoint x="507" y="227"/>
-        </dmndi:DMNDecisionServiceDividerLine>
-      </dmndi:DMNShape>
       <dmndi:DMNShape id="dmnshape-drg-_1929CBD5-40E0-442D-B909-49CEDE0101DC" dmnElementRef="_1929CBD5-40E0-442D-B909-49CEDE0101DC" isCollapsed="false">
         <dmndi:DMNStyle>
           <dmndi:FillColor red="255" green="255" blue="255"/>
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
-        <dc:Bounds x="356" y="559" width="100" height="50"/>
+        <dc:Bounds x="512" y="319" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="dmnshape-drg-_4055D956-1C47-479C-B3F4-BAEB61F1C929" dmnElementRef="_4055D956-1C47-479C-B3F4-BAEB61F1C929" isCollapsed="false">
+      <dmndi:DMNShape id="dmnshape-drg-_3A6F5F72-B8A1-478D-AC97-B99F62109FAA" dmnElementRef="_3A6F5F72-B8A1-478D-AC97-B99F62109FAA" isCollapsed="false">
         <dmndi:DMNStyle>
           <dmndi:FillColor red="255" green="255" blue="255"/>
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
-        <dc:Bounds x="306" y="379" width="116" height="64"/>
+        <dc:Bounds x="412" y="182" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="dmnshape-drg-_1F9350D7-146D-46F1-85D8-15B5B68AF22A" dmnElementRef="_1F9350D7-146D-46F1-85D8-15B5B68AF22A" isCollapsed="false">
+      <dmndi:DMNShape id="dmnshape-drg-_F6855CB1-BAC8-4AB3-9EAB-84F756E73BB5" dmnElementRef="_F6855CB1-BAC8-4AB3-9EAB-84F756E73BB5" isCollapsed="false">
         <dmndi:DMNStyle>
           <dmndi:FillColor red="255" green="255" blue="255"/>
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
-        <dc:Bounds x="123" y="559" width="100" height="50"/>
+        <dc:Bounds x="353" y="312" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="dmnshape-drg-_7045C4F3-CC9E-4129-82B5-764BEEA6DFAC" dmnElementRef="_7045C4F3-CC9E-4129-82B5-764BEEA6DFAC" isCollapsed="false">
-        <dmndi:DMNStyle>
-          <dmndi:FillColor red="255" green="255" blue="255"/>
-          <dmndi:StrokeColor red="0" green="0" blue="0"/>
-          <dmndi:FontColor red="0" green="0" blue="0"/>
-        </dmndi:DMNStyle>
-        <dc:Bounds x="314" y="273" width="100" height="50"/>
-        <dmndi:DMNLabel/>
-      </dmndi:DMNShape>
-      <dmndi:DMNShape id="dmnshape-drg-_15C3512A-BD7E-4C76-B6AC-A41E1EF6E6AA" dmnElementRef="_15C3512A-BD7E-4C76-B6AC-A41E1EF6E6AA" isCollapsed="false">
-        <dmndi:DMNStyle>
-          <dmndi:FillColor red="255" green="255" blue="255"/>
-          <dmndi:StrokeColor red="0" green="0" blue="0"/>
-          <dmndi:FontColor red="0" green="0" blue="0"/>
-        </dmndi:DMNStyle>
-        <dc:Bounds x="231" y="167" width="100" height="50"/>
-        <dmndi:DMNLabel/>
-      </dmndi:DMNShape>
-      <dmndi:DMNEdge id="dmnedge-drg-_800A3BBB-90A3-4D9D-BA5E-A311DED0134F" dmnElementRef="_800A3BBB-90A3-4D9D-BA5E-A311DED0134F">
-        <di:waypoint x="406" y="584"/>
-        <di:waypoint x="364" y="411"/>
+      <dmndi:DMNEdge id="dmnedge-drg-_25F51C54-5914-447E-9020-6F30F00C720A-AUTO-TARGET" dmnElementRef="_25F51C54-5914-447E-9020-6F30F00C720A">
+        <di:waypoint x="562" y="344"/>
+        <di:waypoint x="462" y="232"/>
       </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-drg-_B0944F65-732C-47D7-8C28-3644024C52BB" dmnElementRef="_B0944F65-732C-47D7-8C28-3644024C52BB">
-        <di:waypoint x="173" y="584"/>
-        <di:waypoint x="364" y="443"/>
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-drg-_56AE2944-8708-4CD9-95EB-E6B9BF7040E6" dmnElementRef="_56AE2944-8708-4CD9-95EB-E6B9BF7040E6">
-        <di:waypoint x="364" y="411"/>
-        <di:waypoint x="364" y="323"/>
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-drg-_B833D4C1-AF64-4CC5-9C1C-AC88A86559D3" dmnElementRef="_B833D4C1-AF64-4CC5-9C1C-AC88A86559D3">
-        <di:waypoint x="364" y="298"/>
-        <di:waypoint x="281" y="217"/>
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-drg-_91622A4D-1DDA-47DB-AD09-F2D7A9161659" dmnElementRef="_91622A4D-1DDA-47DB-AD09-F2D7A9161659">
-        <di:waypoint x="173" y="584"/>
-        <di:waypoint x="283" y="238"/>
-        <di:waypoint x="281" y="217"/>
+      <dmndi:DMNEdge id="dmnedge-drg-_FA023A1D-1CFE-47A7-AAA9-26798D4462E9" dmnElementRef="_FA023A1D-1CFE-47A7-AAA9-26798D4462E9">
+        <di:waypoint x="403" y="337"/>
+        <di:waypoint x="462" y="232"/>
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>

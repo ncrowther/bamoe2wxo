@@ -1,0 +1,12 @@
+{
+  "name": "IBM watsonx Orchestrate OpenApi generator for BAMOE V9",
+  "properties": [{
+    "processId": "",
+    "decisionId": "NTCTrafficViolation",
+    "decisionFolder": "TrafficViolation",
+    "restEndpoint": [{
+      "localUrl": "http://localhost:8123",
+      "remoteUrl": "https://lz4fm5hn-8123.uks1.devtunnels.ms/q/swagger-ui/#/NTC%20Traffic%20Violation%20Resource"
+    }]
+  }]
+}
